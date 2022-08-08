@@ -1,0 +1,31 @@
+{
+  "name": "bt-portfolio-backend",
+  "version": "1.0.0",
+  "description": "To run the project install:\r - npm init\r - npm i nodemon\r - npm i express\r - npm i body-parser\r - npm i dotenv\r - npm i mongoose\r - npm i bcrypt\r - npm i mongodb\r - npm i passport\r - npm i passport-local\r - npm i passport-local-mongoose\r - npm i express-session\r - npm i sequelize\r - npm i cors\r - npm i jsonwebtoken",
+  "main": "./app/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BekzodTolipov/bt-portfolio-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BekzodTolipov/bt-portfolio-backend/issues"
+  },
+  "homepage": "https://github.com/BekzodTolipov/bt-portfolio-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.1",
+    "nodemon": "^2.0.19"
+  }
+}

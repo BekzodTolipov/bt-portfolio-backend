@@ -1,0 +1,16 @@
+To run the project install:
+- npm init
+- npm i nodemon
+- npm i express
+- npm i body-parser
+- npm i dotenv
+- npm i mongoose
+- npm i bcrypt
+- npm i mongodb
+- npm i passport
+- npm i passport-local
+- npm i passport-local-mongoose
+- npm i express-session
+- npm i sequelize
+- npm i cors
+- npm i jsonwebtoken
