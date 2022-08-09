@@ -9,7 +9,15 @@ const jwt = require("jsonwebtoken");
 
 const UserModel = require("./models/user.model");
 const ProjectModel = require("./models/project.model");
+const EducationModel = require("./models/education.model");
 const verifyToken = require("./middleware/authJwt");
+
+/* TODO: 
+    - extract token from authentication header assuming its Bearer token
+    - open new endpoints for the rest of the pages
+    
+
+*/
 
 const salt = process.env.SALT;
 
@@ -42,16 +50,6 @@ app.use(bodyParser.json());
 mongoose.connect(
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.CLUSTER_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`
 );
-
-function isAuth(token, userId) {
-    return jwt.verify(token, process.env.SESSION_SECRET, (err, decoded) => {
-        if (err) {
-            return false;
-        }
-
-        return userId === decoded.id;
-    });
-}
 
 // User signup/login
 app.post("/user/signup", async (req, res) => {
@@ -126,7 +124,7 @@ app.post("/user/login", async (req, res) => {
 });
 
 app.route("/projects")
-    .get(verifyToken, async (req, res) => {
+    .get(async (req, res) => {
         try {
             const listOfProjects = await ProjectModel.find();
 
@@ -138,10 +136,12 @@ app.route("/projects")
     .post((req, res) => {
         const title = req.body.title;
         const content = req.body.content;
+        const link = req.body.link;
 
         const newProject = new ProjectModel({
             title,
             content,
+            link,
         });
 
         newProject.save((err) => {
@@ -150,6 +150,33 @@ app.route("/projects")
         });
 
         res.send("New project has been successfully saved");
+    });
+
+app.route("/education")
+    .get(async (req, res) => {
+        try {
+            const listOfSchools = await EducationModel.find();
+
+            return res.send(listOfSchools);
+        } catch (error) {
+            return res.send(error);
+        }
+    })
+    .post((req, res) => {
+        const title = req.body.title;
+        const content = req.body.content;
+
+        const newEducation = new EducationModel({
+            title,
+            content,
+        });
+
+        newEducation.save((err) => {
+            if (err)
+                res.send("Error occurred while trying to save new education");
+        });
+
+        res.send("New education has been successfully saved");
     });
 
 app.listen(process.env.PORT, () => {
